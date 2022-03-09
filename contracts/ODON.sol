@@ -645,7 +645,6 @@ contract ODON is
 
         swapableLiquidityFeeAmount -= previousToken;
 
-        //   emit SwapAndLiquify(half, newBalance, otherHalf);
     }
 
     function swapTokensForEth(uint256 tokenAmount) private {
