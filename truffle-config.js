@@ -78,16 +78,11 @@ module.exports = {
       timoutBlocks: 2000,
     },
     testnet: {
-      provider: () =>
-        new HDWalletProvider(
-          privateKey,
-          `https://data-seed-prebsc-1-s1.binance.org:8545`
-        ),
+      provider: () => new HDWalletProvider(privateKey, `https://data-seed-prebsc-1-s1.binance.org:8545`),
       network_id: 97,
       skipDryRun: true,
-      gas: 3000000,
-      gasPrice: 10000000000,
-      networkCheckTimeout: 1000000000
+      networkCheckTimeout: 100000000,
+      timoutBlocks: 200000,
     },
   },
 
@@ -115,6 +110,6 @@ module.exports = {
   plugins: ["truffle-plugin-verify"],
 
   api_keys: {
-    etherscan: "W2K31XZI1UW64BRI6Z4AZ5M3W4V2ZPBN98"
+    bscscan: "A9WI7GTAYKMHPEUZEZKYIVQU348QJU33NZ"
   }
 };
