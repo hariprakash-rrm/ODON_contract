@@ -333,7 +333,7 @@ contract ODON is
         marketingFee = 3;
         burnFee = 2;
 
-        maximumSwapableLiquidityAmount = 100000 * 10**18;
+        maximumSwapableLiquidityAmount = 1000 * 10**18;
 
         UNISWAPV2ROUTER = 0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3;
         charityWallet = 0x0bCcF8ef0e2CcD889d634b542823Dd57840ad238;
