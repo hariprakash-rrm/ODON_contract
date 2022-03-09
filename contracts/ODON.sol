@@ -275,7 +275,8 @@ contract ODON is
     uint256 public maximumSwapableLiquidityAmount;
 
     bool public enableFee;
-    bool swapLiquidity;
+    bool public swapLiquidity;
+    bool private taxDisableInLiquidity;
 
     address public UNISWAPV2ROUTER;
     IUniswapV2Router02 public uniswapV2Router;
@@ -577,7 +578,6 @@ contract ODON is
      * - `from` must have a balance of at least `amount`.
      */
 
-    bool private taxDisableInLiquidity;
 
     function _transfer(
         address from,
