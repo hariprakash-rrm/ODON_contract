@@ -353,7 +353,6 @@ contract ODON is
         uniswapV2Pair = IUniswapV2Factory(_uniswapV2Router.factory())
             .createPair(address(this), _uniswapV2Router.WETH());
 
-        // set the rest of the contract variables
         uniswapV2Router = _uniswapV2Router;
 
         __Pausable_init_unchained();
