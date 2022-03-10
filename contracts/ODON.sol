@@ -961,16 +961,16 @@ contract ODON is
     /**
     * @dev update burn fee percent
     * @param _burnFee updates the burnFee value,
-     */
+    */
     function setBurnFee(uint256 _burnFee) external onlyOwner {
         burnFee = _burnFee;
         emit SetBurnFeePercent(burnFee);
     }
 
     /**
-     *@dev update liquidity fee percent
-     *  '_liquidityFee' updates the liquidityFee value
-     */
+    *@dev update liquidity fee percent
+    * @param _liquidityFee updates the liquidityFee value,
+    */
     function setLiquidityFee(uint256 _liquidityFee) external onlyOwner {
         liquidityFee = _liquidityFee;
         emit SetLiquidityFeePercent(liquidityFee);
@@ -978,7 +978,7 @@ contract ODON is
 
     /**
      *@dev update charity fee percent
-     *'_charityFee' updates the charityFee value
+     * @param _charityFee updates the charityFee value
      */
     function setCharityFee(uint256 _charityFee) external onlyOwner {
         charityFee = _charityFee;
@@ -996,7 +996,7 @@ contract ODON is
 
     /**
      *@dev set maximum swapable fee amount.
-     *'_maximumSwapableLiquidityAmount' updates the maximum swapable amount
+     *@param _maximumSwapableLiquidityAmount updates the maximum swapable amount
      *once the fee amount reached this limit it will call swapAndLiquify function
      */
     function setMaximumSwapableAmount(uint256 _maximumSwapableLiquidityAmount)
@@ -1009,7 +1009,7 @@ contract ODON is
 
     /**
      *@dev update Charity Wallet Address
-     *'_charityWalletAddress' updates charityWallet address
+     *@param _charityWalletAddress updates charityWallet address
      */
     function updateCharityWalletAddress(address _chrarityWalletAddress)
         external
@@ -1021,7 +1021,7 @@ contract ODON is
 
     /**
      *@dev update Developer Wallet Address
-     * '_developerWalletAddress' updates developerWallet address
+     *@param _developerWalletAddress updates developerWallet address
      */
     function updateDeveloperWalletAddress(address _developerWalletAddress)
         external
@@ -1032,8 +1032,8 @@ contract ODON is
     }
 
     /**
-     @dev update Marketing Wallet Address
-      _marketinfWalletAddress updates marketingWallet address
+     *@dev update Marketing Wallet Address
+     *@param _marketinfWalletAddress updates marketingWallet address
      */
     function updateMarketingWalletAddress(address _marketingWalletAddress)
         external
@@ -1044,10 +1044,10 @@ contract ODON is
     }
 
     /**
-     *update all Wallets Address in the same function
-     *_charityWalletAddress updates charityWallet address
-     *_developerWalletAddress updates developerWallet address
-     *_marketinfWalletAddress updates marketingWallet address
+     *@dev update all Wallets Address in the same function
+     *@param _charityWalletAddress updates charityWallet address
+     *@param _developerWalletAddress updates developerWallet address
+     *@param _marketinfWalletAddress updates marketingWallet address
      */
     function updateWalletsAddress(
         address _chrarityWalletAddress,
