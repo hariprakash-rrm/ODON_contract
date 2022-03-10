@@ -913,11 +913,11 @@ contract ODON is
 
     /**
     @dev set all the 'fee' in the same function
-    * @param _marketing Feeupdates the marketingFee value,
-    * @param _developerFee updates the developerFee value,
-    * @param _burnFee updates the burnFee value,
-    * @param _liquidityFee updates the liquidityFee value,
-    * @param _charityFee updates the charityFee value
+    *  _marketing Feeupdates the marketingFee value,
+    *  _developerFee updates the developerFee value,
+    *  _burnFee updates the burnFee value,
+    *  _liquidityFee updates the liquidityFee value,
+    *  _charityFee updates the charityFee value
      */
     function setTaxFeePercent(
         uint256 _marketingFee,
@@ -942,7 +942,7 @@ contract ODON is
 
     /**
      *@dev update marketing fee percentage
-     * @param _marketing Feeupdates the marketingFee value
+     *  _marketing Feeupdates the marketingFee value
      */
     function setMarketingFee(uint256 _marketingFee) external onlyOwner {
         marketingFee = _marketingFee;
@@ -951,7 +951,7 @@ contract ODON is
 
     /**
     *@dev update developer fee percent
-    * @param _developerFee updates the developerFee value
+    *  _developerFee updates the developerFee value
     */
     function setDeveloperFee(uint256 _developerFee) external onlyOwner {
         developerFee = _developerFee;
@@ -960,7 +960,7 @@ contract ODON is
 
     /**
     * @dev update burn fee percent
-    * @param _burnFee updates the burnFee value,
+    *  _burnFee updates the burnFee value,
     */
     function setBurnFee(uint256 _burnFee) external onlyOwner {
         burnFee = _burnFee;
@@ -969,7 +969,7 @@ contract ODON is
 
     /**
     *@dev update liquidity fee percent
-    * @param _liquidityFee updates the liquidityFee value,
+    *  _liquidityFee updates the liquidityFee value,
     */
     function setLiquidityFee(uint256 _liquidityFee) external onlyOwner {
         liquidityFee = _liquidityFee;
@@ -978,7 +978,7 @@ contract ODON is
 
     /**
      *@dev update charity fee percent
-     * @param _charityFee updates the charityFee value
+     *  _charityFee updates the charityFee value
      */
     function setCharityFee(uint256 _charityFee) external onlyOwner {
         charityFee = _charityFee;
@@ -996,7 +996,7 @@ contract ODON is
 
     /**
      *@dev set maximum swapable fee amount.
-     *@param _maximumSwapableLiquidityAmount updates the maximum swapable amount
+     * _maximumSwapableLiquidityAmount updates the maximum swapable amount
      *once the fee amount reached this limit it will call swapAndLiquify function
      */
     function setMaximumSwapableAmount(uint256 _maximumSwapableLiquidityAmount)
@@ -1009,7 +1009,7 @@ contract ODON is
 
     /**
      *@dev update Charity Wallet Address
-     *@param _charityWalletAddress updates charityWallet address
+     * _charityWalletAddress updates charityWallet address
      */
     function updateCharityWalletAddress(address _chrarityWalletAddress)
         external
@@ -1021,7 +1021,7 @@ contract ODON is
 
     /**
      *@dev update Developer Wallet Address
-     *@param _developerWalletAddress updates developerWallet address
+     * _developerWalletAddress updates developerWallet address
      */
     function updateDeveloperWalletAddress(address _developerWalletAddress)
         external
@@ -1033,7 +1033,7 @@ contract ODON is
 
     /**
      *@dev update Marketing Wallet Address
-     *@param _marketinfWalletAddress updates marketingWallet address
+     * _marketinfWalletAddress updates marketingWallet address
      */
     function updateMarketingWalletAddress(address _marketingWalletAddress)
         external
@@ -1045,9 +1045,9 @@ contract ODON is
 
     /**
      *@dev update all Wallets Address in the same function
-     *@param _charityWalletAddress updates charityWallet address
-     *@param _developerWalletAddress updates developerWallet address
-     *@param _marketinfWalletAddress updates marketingWallet address
+     * _charityWalletAddress updates charityWallet address
+     * _developerWalletAddress updates developerWallet address
+     * _marketinfWalletAddress updates marketingWallet address
      */
     function updateWalletsAddress(
         address _chrarityWalletAddress,
