@@ -69,14 +69,15 @@ module.exports = {
     // network_id: 2111,   // This network is yours, in the cloud.
     // production: true    // Treats this network as if it was a public net. (default: false)
     // }
-    rinkeby: {
-      provider: () => new HDWalletProvider(privateKey, `https://rinkeby.infura.io/v3/${infuraKey}`),
-      network_id: 4,
-      // from: '0x81AffC7b00e8C7638eD4466C6D6f6598d667e4dA',
-      skipDryRun: true,
-      networkCheckTimeout: 1000000,
-      timoutBlocks: 2000,
-    },
+    
+      rinkeby: {
+        provider: () => new HDWalletProvider(privateKey, `https://rinkeby.infura.io/v3/${infuraKey}`),
+        network_id: 4,
+        // from: '0x81AffC7b00e8C7638eD4466C6D6f6598d667e4dA',
+        skipDryRun: true,
+        networkCheckTimeout: 1000000,
+        timoutBlocks: 2000,
+      },
     testnet: {
       provider: () => new HDWalletProvider(privateKey, `https://data-seed-prebsc-1-s1.binance.org:8545`),
       network_id: 97,
@@ -110,6 +111,6 @@ module.exports = {
   plugins: ["truffle-plugin-verify"],
 
   api_keys: {
-    bscscan: "A9WI7GTAYKMHPEUZEZKYIVQU348QJU33NZ"
+    etherscan: apiKey
   }
 };

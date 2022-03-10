@@ -8,3 +8,8 @@ module.exports = async function (deployer) {
   // await upgradeProxy(ODON.address,ODON_V2, { deployer, kind: "uups" });
 
 };
+// const ODON = artifacts.require("ODON");
+
+// module.exports = function (deployer) {
+//   deployer.deploy(ODON);
+// };
