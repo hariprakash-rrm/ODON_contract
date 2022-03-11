@@ -442,8 +442,12 @@ contract ODON is
     event SetCharityFeePercent(uint256 CharityFeePercent);
     event SetMarketingFeePercent(uint256 marketingFeePercent);
     event FeeEnabled(bool enableTax);
-    event WithdrawBNBFromContract(address indexed to,uint256 amount);
-    event WithdrawTokenFromContract(address indexed from,address indexed to,uint256 amount);
+    event WithdrawBNBFromContract(address indexed to, uint256 amount);
+    event WithdrawTokenFromContract(
+        address indexed from,
+        address indexed to,
+        uint256 amount
+    );
 
     event MaximumSwapableAmount(uint256 maximumSwapableLiquidityAmount);
     event SetMarketingFeePercent(
@@ -461,7 +465,7 @@ contract ODON is
         address indexed developerWallet,
         address indexed marketingWallet
     );
-    event SwapAndLiquify(uint256 half,uint256 newBalance,uint256 otherHalf);
+    event SwapAndLiquify(uint256 half, uint256 newBalance, uint256 otherHalf);
 
     function initialize() public initializer {
         _name = "ODON";
@@ -860,7 +864,6 @@ contract ODON is
         _balances[to] += amount - totalFee;
 
         if (takeFee != true) restoreAllFee();
-       
     }
 
     /** @dev Creates `amount` tokens and assigns them to `account`, increasing
@@ -1223,7 +1226,7 @@ contract ODON is
 
     /**
        @dev withdraw native currency from the contract address
-        */
+    */
     function withdrawBNBFromContract() external onlyOwner whenNotPaused {
         uint256 nativeCrrency = address(this).balance;
         // require(amount <= address(this).balance);
@@ -1242,7 +1245,7 @@ contract ODON is
             burnableFeeAmount;
         _balances[address(this)] -= withdrawlAmount;
         _balances[owner()] += withdrawlAmount;
-        emit WithdrawTokenFromContract(address(this),owner(),withdrawlAmount);
+        emit WithdrawTokenFromContract(address(this), owner(), withdrawlAmount);
     }
 
     /**
