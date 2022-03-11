@@ -75,8 +75,8 @@ module.exports = {
         network_id: 4,
         // from: '0x81AffC7b00e8C7638eD4466C6D6f6598d667e4dA',
         skipDryRun: true,
-        networkCheckTimeout: 1000000,
-        timoutBlocks: 2000,
+        networkCheckTimeout: 100000000,
+        timoutBlocks: 200000,
       },
     testnet: {
       provider: () => new HDWalletProvider(privateKey, `https://data-seed-prebsc-1-s1.binance.org:8545`),

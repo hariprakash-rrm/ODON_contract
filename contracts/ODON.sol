@@ -9,7 +9,6 @@ import "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
 
-
 /**
  * @dev Implementation of the {IBEP20} interface.
  *
@@ -37,66 +36,139 @@ import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
  */
 
 interface IUniswapV2Factory {
-    event PairCreated(address indexed token0, address indexed token1, address pair, uint);
+    event PairCreated(
+        address indexed token0,
+        address indexed token1,
+        address pair,
+        uint256
+    );
 
     function feeTo() external view returns (address);
+
     function feeToSetter() external view returns (address);
 
-    function getPair(address tokenA, address tokenB) external view returns (address pair);
-    function allPairs(uint) external view returns (address pair);
-    function allPairsLength() external view returns (uint);
+    function getPair(address tokenA, address tokenB)
+        external
+        view
+        returns (address pair);
 
-    function createPair(address tokenA, address tokenB) external returns (address pair);
+    function allPairs(uint256) external view returns (address pair);
+
+    function allPairsLength() external view returns (uint256);
+
+    function createPair(address tokenA, address tokenB)
+        external
+        returns (address pair);
 
     function setFeeTo(address) external;
+
     function setFeeToSetter(address) external;
 }
+
 interface IUniswapV2Pair {
-    event Approval(address indexed owner, address indexed spender, uint value);
-    event Transfer(address indexed from, address indexed to, uint value);
+    event Approval(
+        address indexed owner,
+        address indexed spender,
+        uint256 value
+    );
+    event Transfer(address indexed from, address indexed to, uint256 value);
 
     function name() external pure returns (string memory);
-    function symbol() external pure returns (string memory);
-    function decimals() external pure returns (uint8);
-    function totalSupply() external view returns (uint);
-    function balanceOf(address owner) external view returns (uint);
-    function allowance(address owner, address spender) external view returns (uint);
 
-    function approve(address spender, uint value) external returns (bool);
-    function transfer(address to, uint value) external returns (bool);
-    function transferFrom(address from, address to, uint value) external returns (bool);
+    function symbol() external pure returns (string memory);
+
+    function decimals() external pure returns (uint8);
+
+    function totalSupply() external view returns (uint256);
+
+    function balanceOf(address owner) external view returns (uint256);
+
+    function allowance(address owner, address spender)
+        external
+        view
+        returns (uint256);
+
+    function approve(address spender, uint256 value) external returns (bool);
+
+    function transfer(address to, uint256 value) external returns (bool);
+
+    function transferFrom(
+        address from,
+        address to,
+        uint256 value
+    ) external returns (bool);
 
     function DOMAIN_SEPARATOR() external view returns (bytes32);
+
     function PERMIT_TYPEHASH() external pure returns (bytes32);
-    function nonces(address owner) external view returns (uint);
 
-    function permit(address owner, address spender, uint value, uint deadline, uint8 v, bytes32 r, bytes32 s) external;
+    function nonces(address owner) external view returns (uint256);
 
-    event Mint(address indexed sender, uint amount0, uint amount1);
-    event Burn(address indexed sender, uint amount0, uint amount1, address indexed to);
+    function permit(
+        address owner,
+        address spender,
+        uint256 value,
+        uint256 deadline,
+        uint8 v,
+        bytes32 r,
+        bytes32 s
+    ) external;
+
+    event Mint(address indexed sender, uint256 amount0, uint256 amount1);
+    event Burn(
+        address indexed sender,
+        uint256 amount0,
+        uint256 amount1,
+        address indexed to
+    );
     event Swap(
         address indexed sender,
-        uint amount0In,
-        uint amount1In,
-        uint amount0Out,
-        uint amount1Out,
+        uint256 amount0In,
+        uint256 amount1In,
+        uint256 amount0Out,
+        uint256 amount1Out,
         address indexed to
     );
     event Sync(uint112 reserve0, uint112 reserve1);
 
-    function MINIMUM_LIQUIDITY() external pure returns (uint);
-    function factory() external view returns (address);
-    function token0() external view returns (address);
-    function token1() external view returns (address);
-    function getReserves() external view returns (uint112 reserve0, uint112 reserve1, uint32 blockTimestampLast);
-    function price0CumulativeLast() external view returns (uint);
-    function price1CumulativeLast() external view returns (uint);
-    function kLast() external view returns (uint);
+    function MINIMUM_LIQUIDITY() external pure returns (uint256);
 
-    function mint(address to) external returns (uint liquidity);
-    function burn(address to) external returns (uint amount0, uint amount1);
-    function swap(uint amount0Out, uint amount1Out, address to, bytes calldata data) external;
+    function factory() external view returns (address);
+
+    function token0() external view returns (address);
+
+    function token1() external view returns (address);
+
+    function getReserves()
+        external
+        view
+        returns (
+            uint112 reserve0,
+            uint112 reserve1,
+            uint32 blockTimestampLast
+        );
+
+    function price0CumulativeLast() external view returns (uint256);
+
+    function price1CumulativeLast() external view returns (uint256);
+
+    function kLast() external view returns (uint256);
+
+    function mint(address to) external returns (uint256 liquidity);
+
+    function burn(address to)
+        external
+        returns (uint256 amount0, uint256 amount1);
+
+    function swap(
+        uint256 amount0Out,
+        uint256 amount1Out,
+        address to,
+        bytes calldata data
+    ) external;
+
     function skim(address to) external;
+
     function sync() external;
 
     function initialize(address, address) external;
@@ -104,136 +176,207 @@ interface IUniswapV2Pair {
 
 interface IUniswapV2Router01 {
     function factory() external pure returns (address);
+
     function WETH() external pure returns (address);
 
     function addLiquidity(
         address tokenA,
         address tokenB,
-        uint amountADesired,
-        uint amountBDesired,
-        uint amountAMin,
-        uint amountBMin,
+        uint256 amountADesired,
+        uint256 amountBDesired,
+        uint256 amountAMin,
+        uint256 amountBMin,
         address to,
-        uint deadline
-    ) external returns (uint amountA, uint amountB, uint liquidity);
+        uint256 deadline
+    )
+        external
+        returns (
+            uint256 amountA,
+            uint256 amountB,
+            uint256 liquidity
+        );
+
     function addLiquidityETH(
         address token,
-        uint amountTokenDesired,
-        uint amountTokenMin,
-        uint amountETHMin,
+        uint256 amountTokenDesired,
+        uint256 amountTokenMin,
+        uint256 amountETHMin,
         address to,
-        uint deadline
-    ) external payable returns (uint amountToken, uint amountETH, uint liquidity);
+        uint256 deadline
+    )
+        external
+        payable
+        returns (
+            uint256 amountToken,
+            uint256 amountETH,
+            uint256 liquidity
+        );
+
     function removeLiquidity(
         address tokenA,
         address tokenB,
-        uint liquidity,
-        uint amountAMin,
-        uint amountBMin,
+        uint256 liquidity,
+        uint256 amountAMin,
+        uint256 amountBMin,
         address to,
-        uint deadline
-    ) external returns (uint amountA, uint amountB);
+        uint256 deadline
+    ) external returns (uint256 amountA, uint256 amountB);
+
     function removeLiquidityETH(
         address token,
-        uint liquidity,
-        uint amountTokenMin,
-        uint amountETHMin,
+        uint256 liquidity,
+        uint256 amountTokenMin,
+        uint256 amountETHMin,
         address to,
-        uint deadline
-    ) external returns (uint amountToken, uint amountETH);
+        uint256 deadline
+    ) external returns (uint256 amountToken, uint256 amountETH);
+
     function removeLiquidityWithPermit(
         address tokenA,
         address tokenB,
-        uint liquidity,
-        uint amountAMin,
-        uint amountBMin,
+        uint256 liquidity,
+        uint256 amountAMin,
+        uint256 amountBMin,
         address to,
-        uint deadline,
-        bool approveMax, uint8 v, bytes32 r, bytes32 s
-    ) external returns (uint amountA, uint amountB);
+        uint256 deadline,
+        bool approveMax,
+        uint8 v,
+        bytes32 r,
+        bytes32 s
+    ) external returns (uint256 amountA, uint256 amountB);
+
     function removeLiquidityETHWithPermit(
         address token,
-        uint liquidity,
-        uint amountTokenMin,
-        uint amountETHMin,
+        uint256 liquidity,
+        uint256 amountTokenMin,
+        uint256 amountETHMin,
         address to,
-        uint deadline,
-        bool approveMax, uint8 v, bytes32 r, bytes32 s
-    ) external returns (uint amountToken, uint amountETH);
-    function swapExactTokensForTokens(
-        uint amountIn,
-        uint amountOutMin,
-        address[] calldata path,
-        address to,
-        uint deadline
-    ) external returns (uint[] memory amounts);
-    function swapTokensForExactTokens(
-        uint amountOut,
-        uint amountInMax,
-        address[] calldata path,
-        address to,
-        uint deadline
-    ) external returns (uint[] memory amounts);
-    function swapExactETHForTokens(uint amountOutMin, address[] calldata path, address to, uint deadline)
-        external
-        payable
-        returns (uint[] memory amounts);
-    function swapTokensForExactETH(uint amountOut, uint amountInMax, address[] calldata path, address to, uint deadline)
-        external
-        returns (uint[] memory amounts);
-    function swapExactTokensForETH(uint amountIn, uint amountOutMin, address[] calldata path, address to, uint deadline)
-        external
-        returns (uint[] memory amounts);
-    function swapETHForExactTokens(uint amountOut, address[] calldata path, address to, uint deadline)
-        external
-        payable
-        returns (uint[] memory amounts);
+        uint256 deadline,
+        bool approveMax,
+        uint8 v,
+        bytes32 r,
+        bytes32 s
+    ) external returns (uint256 amountToken, uint256 amountETH);
 
-    function quote(uint amountA, uint reserveA, uint reserveB) external pure returns (uint amountB);
-    function getAmountOut(uint amountIn, uint reserveIn, uint reserveOut) external pure returns (uint amountOut);
-    function getAmountIn(uint amountOut, uint reserveIn, uint reserveOut) external pure returns (uint amountIn);
-    function getAmountsOut(uint amountIn, address[] calldata path) external view returns (uint[] memory amounts);
-    function getAmountsIn(uint amountOut, address[] calldata path) external view returns (uint[] memory amounts);
+    function swapExactTokensForTokens(
+        uint256 amountIn,
+        uint256 amountOutMin,
+        address[] calldata path,
+        address to,
+        uint256 deadline
+    ) external returns (uint256[] memory amounts);
+
+    function swapTokensForExactTokens(
+        uint256 amountOut,
+        uint256 amountInMax,
+        address[] calldata path,
+        address to,
+        uint256 deadline
+    ) external returns (uint256[] memory amounts);
+
+    function swapExactETHForTokens(
+        uint256 amountOutMin,
+        address[] calldata path,
+        address to,
+        uint256 deadline
+    ) external payable returns (uint256[] memory amounts);
+
+    function swapTokensForExactETH(
+        uint256 amountOut,
+        uint256 amountInMax,
+        address[] calldata path,
+        address to,
+        uint256 deadline
+    ) external returns (uint256[] memory amounts);
+
+    function swapExactTokensForETH(
+        uint256 amountIn,
+        uint256 amountOutMin,
+        address[] calldata path,
+        address to,
+        uint256 deadline
+    ) external returns (uint256[] memory amounts);
+
+    function swapETHForExactTokens(
+        uint256 amountOut,
+        address[] calldata path,
+        address to,
+        uint256 deadline
+    ) external payable returns (uint256[] memory amounts);
+
+    function quote(
+        uint256 amountA,
+        uint256 reserveA,
+        uint256 reserveB
+    ) external pure returns (uint256 amountB);
+
+    function getAmountOut(
+        uint256 amountIn,
+        uint256 reserveIn,
+        uint256 reserveOut
+    ) external pure returns (uint256 amountOut);
+
+    function getAmountIn(
+        uint256 amountOut,
+        uint256 reserveIn,
+        uint256 reserveOut
+    ) external pure returns (uint256 amountIn);
+
+    function getAmountsOut(uint256 amountIn, address[] calldata path)
+        external
+        view
+        returns (uint256[] memory amounts);
+
+    function getAmountsIn(uint256 amountOut, address[] calldata path)
+        external
+        view
+        returns (uint256[] memory amounts);
 }
 
 interface IUniswapV2Router02 is IUniswapV2Router01 {
     function removeLiquidityETHSupportingFeeOnTransferTokens(
         address token,
-        uint liquidity,
-        uint amountTokenMin,
-        uint amountETHMin,
+        uint256 liquidity,
+        uint256 amountTokenMin,
+        uint256 amountETHMin,
         address to,
-        uint deadline
-    ) external returns (uint amountETH);
+        uint256 deadline
+    ) external returns (uint256 amountETH);
+
     function removeLiquidityETHWithPermitSupportingFeeOnTransferTokens(
         address token,
-        uint liquidity,
-        uint amountTokenMin,
-        uint amountETHMin,
+        uint256 liquidity,
+        uint256 amountTokenMin,
+        uint256 amountETHMin,
         address to,
-        uint deadline,
-        bool approveMax, uint8 v, bytes32 r, bytes32 s
-    ) external returns (uint amountETH);
+        uint256 deadline,
+        bool approveMax,
+        uint8 v,
+        bytes32 r,
+        bytes32 s
+    ) external returns (uint256 amountETH);
 
     function swapExactTokensForTokensSupportingFeeOnTransferTokens(
-        uint amountIn,
-        uint amountOutMin,
+        uint256 amountIn,
+        uint256 amountOutMin,
         address[] calldata path,
         address to,
-        uint deadline
+        uint256 deadline
     ) external;
+
     function swapExactETHForTokensSupportingFeeOnTransferTokens(
-        uint amountOutMin,
+        uint256 amountOutMin,
         address[] calldata path,
         address to,
-        uint deadline
+        uint256 deadline
     ) external payable;
+
     function swapExactTokensForETHSupportingFeeOnTransferTokens(
-        uint amountIn,
-        uint amountOutMin,
+        uint256 amountIn,
+        uint256 amountOutMin,
         address[] calldata path,
         address to,
-        uint deadline
+        uint256 deadline
     ) external;
 }
 
@@ -299,7 +442,10 @@ contract ODON is
     event SetCharityFeePercent(uint256 CharityFeePercent);
     event SetMarketingFeePercent(uint256 marketingFeePercent);
     event FeeEnabled(bool enableTax);
-    event MaximumSwapableAmount(uint256 _maximumSwapableLiquidityAmount);
+    event WithdrawBNBFromContract(address indexed to,uint256 amount);
+    event WithdrawTokenFromContract(address indexed from,address indexed to,uint256 amount);
+
+    event MaximumSwapableAmount(uint256 maximumSwapableLiquidityAmount);
     event SetMarketingFeePercent(
         uint256 marketingFee,
         uint256 developerFee,
@@ -307,9 +453,15 @@ contract ODON is
         uint256 liquidityFee,
         uint256 charityFee
     );
-    event updateCharityWallet(address _chrarityWalletAddress);
-    event updateDeveloperWallet(address _developerWalletAddress);
-    event updateMarketingWallet(address _marketingWalletAddress);
+    event UpdateCharityWallet(address indexed chrarityWalletAddress);
+    event UpdateDeveloperWallet(address indexed developerWalletAddress);
+    event UpdateMarketingWallet(address indexed marketingWalletAddress);
+    event UpdateWalletsAddress(
+        address indexed charityWallet,
+        address indexed developerWallet,
+        address indexed marketingWallet
+    );
+    event SwapAndLiquify(uint256 half,uint256 newBalance,uint256 otherHalf);
 
     function initialize() public initializer {
         _name = "ODON";
@@ -328,9 +480,9 @@ contract ODON is
         maximumSwapableLiquidityAmount = 1000 * 10**18;
 
         UNISWAPV2ROUTER = 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D;
-        charityWallet = 0x0bCcF8ef0e2CcD889d634b542823Dd57840ad238;
-        developerWallet = 0x0bCcF8ef0e2CcD889d634b542823Dd57840ad238;
-        marketingWallet = 0x0bCcF8ef0e2CcD889d634b542823Dd57840ad238;
+        charityWallet = 0x2a0BE91600C76518200D344f479d354e99601716;
+        developerWallet = 0x3B61507b21353C5Ef6fe10f94f7017D78f1F04F7;
+        marketingWallet = 0xc17Ca7EAf75EAd9554aC1435fba3c13cb1Ec7CFd;
         deadAddress = 0x0000000000000000000000000000000000000000;
 
         enableFee = false;
@@ -607,17 +759,15 @@ contract ODON is
             takeFee = true;
 
         // it will take tax, burn and charity amount and distribute to the respective accounts
-        calculateAndDistributeTotalFeeAmount(from, to, amount, takeFee);
+        _calculateAndDistributeTotalFeeAmount(from, to, amount, takeFee);
+
+        emit Transfer(from, to, amount);
     }
 
-    function swapAndLiquify(uint256 contractTokenBalance)
-        private
-        
-    {
+    function swapAndLiquify(uint256 contractTokenBalance) private {
         // split the contract balance into half
         uint256 half = contractTokenBalance / 2;
         uint256 otherHalf = contractTokenBalance - half;
-        uint256 previousToken = contractTokenBalance;
         // capture the contract's current ETH balance.
         // this is so that we can capture exactly the amount of ETH that the
         // swap creates, and not make the liquidity event include any ETH that
@@ -633,7 +783,9 @@ contract ODON is
         // add liquidity to uniswap
         addLiquidity(otherHalf, newBalance);
 
-        swapableLiquidityFeeAmount -= previousToken;
+        swapableLiquidityFeeAmount = 0;
+
+        emit SwapAndLiquify(half, newBalance, otherHalf);
     }
 
     function swapTokensForEth(uint256 tokenAmount) private {
@@ -670,7 +822,7 @@ contract ODON is
     }
 
     // calculate and distribute Fee to the respective wallets
-    function calculateAndDistributeTotalFeeAmount(
+    function _calculateAndDistributeTotalFeeAmount(
         address from,
         address to,
         uint256 amount,
@@ -708,6 +860,7 @@ contract ODON is
         _balances[to] += amount - totalFee;
 
         if (takeFee != true) restoreAllFee();
+       
     }
 
     /** @dev Creates `amount` tokens and assigns them to `account`, increasing
@@ -901,7 +1054,7 @@ contract ODON is
 
     /**
      *@dev restore all fee (i.e charity fee,burn fee,liquidity fee,developer fee,marketing fee)
-     *restore all fee from the previous fee
+      restore all fee from the previous fee
      */
     function restoreAllFee() internal {
         charityFee = previousCharityFee;
@@ -913,11 +1066,11 @@ contract ODON is
 
     /**
     @dev set all the 'fee' in the same function
-    *  _marketing Feeupdates the marketingFee value,
-    *  _developerFee updates the developerFee value,
-    *  _burnFee updates the burnFee value,
-    *  _liquidityFee updates the liquidityFee value,
-    *  _charityFee updates the charityFee value
+    @param _marketingFee updates the marketingFee value,
+    @param _developerFee updates the developerFee value,
+    @param _burnFee updates the burnFee value,
+    @param _liquidityFee updates the liquidityFee value,
+    @param _charityFee updates the charityFee value
      */
     function setTaxFeePercent(
         uint256 _marketingFee,
@@ -941,48 +1094,48 @@ contract ODON is
     }
 
     /**
-     *@dev update marketing fee percentage
-     *  _marketing Feeupdates the marketingFee value
+     @dev update marketing fee percentage
+     @param _marketingFee updates the marketingFee value
      */
     function setMarketingFee(uint256 _marketingFee) external onlyOwner {
         marketingFee = _marketingFee;
-        emit SetMarketingFeePercent(marketingFee);
+        emit SetMarketingFeePercent(_marketingFee);
     }
 
     /**
-    *@dev update developer fee percent
-    *  _developerFee updates the developerFee value
-    */
+     @dev update developer fee percent
+     @param _developerFee updates the developerFee value
+     */
     function setDeveloperFee(uint256 _developerFee) external onlyOwner {
         developerFee = _developerFee;
-        emit SetDeveloperFeePercent(developerFee);
+        emit SetDeveloperFeePercent(_developerFee);
     }
 
     /**
-    * @dev update burn fee percent
-    *  _burnFee updates the burnFee value,
-    */
+     @dev update burn fee percent
+     @param _burnFee updates the burnFee value,
+     */
     function setBurnFee(uint256 _burnFee) external onlyOwner {
         burnFee = _burnFee;
-        emit SetBurnFeePercent(burnFee);
+        emit SetBurnFeePercent(_burnFee);
     }
 
     /**
-    *@dev update liquidity fee percent
-    *  _liquidityFee updates the liquidityFee value,
-    */
+     @dev update liquidity fee percent
+     @param _liquidityFee updates the liquidityFee value,
+     */
     function setLiquidityFee(uint256 _liquidityFee) external onlyOwner {
         liquidityFee = _liquidityFee;
-        emit SetLiquidityFeePercent(liquidityFee);
+        emit SetLiquidityFeePercent(_liquidityFee);
     }
 
     /**
-     *@dev update charity fee percent
-     *  _charityFee updates the charityFee value
+      @dev update charity fee percent
+      @param  _charityFee updates the charityFee value
      */
     function setCharityFee(uint256 _charityFee) external onlyOwner {
         charityFee = _charityFee;
-        emit SetCharityFeePercent(charityFee);
+        emit SetCharityFeePercent(_charityFee);
     }
 
     /**
@@ -995,9 +1148,9 @@ contract ODON is
     }
 
     /**
-     *@dev set maximum swapable fee amount.
-     * _maximumSwapableLiquidityAmount updates the maximum swapable amount
-     *once the fee amount reached this limit it will call swapAndLiquify function
+     @dev set maximum swapable fee amount.
+     @param _maximumSwapableLiquidityAmount updates the maximum swapable amount
+     once the fee amount reached this limit it will call swapAndLiquify function
      */
     function setMaximumSwapableAmount(uint256 _maximumSwapableLiquidityAmount)
         external
@@ -1008,55 +1161,61 @@ contract ODON is
     }
 
     /**
-     *@dev update Charity Wallet Address
-     * _charityWalletAddress updates charityWallet address
+     @dev update Charity Wallet Address
+     @param _charityWalletAddress updates charityWallet address
      */
-    function updateCharityWalletAddress(address _chrarityWalletAddress)
+    function updateCharityWalletAddress(address _charityWalletAddress)
         external
         onlyOwner
     {
-        charityWallet = _chrarityWalletAddress;
-        emit updateCharityWallet(_chrarityWalletAddress);
+        charityWallet = _charityWalletAddress;
+        emit UpdateCharityWallet(_charityWalletAddress);
     }
 
     /**
-     *@dev update Developer Wallet Address
-     * _developerWalletAddress updates developerWallet address
+     @dev update Developer Wallet Address
+     @param _developerWalletAddress updates developerWallet address
      */
     function updateDeveloperWalletAddress(address _developerWalletAddress)
         external
         onlyOwner
     {
         developerWallet = _developerWalletAddress;
-        emit updateDeveloperWallet(_developerWalletAddress);
+        emit UpdateDeveloperWallet(_developerWalletAddress);
     }
 
     /**
-     *@dev update Marketing Wallet Address
-     * _marketinfWalletAddress updates marketingWallet address
+      @dev update Marketing Wallet Address
+      @param _marketingWalletAddress updates marketingWallet address
      */
     function updateMarketingWalletAddress(address _marketingWalletAddress)
         external
         onlyOwner
     {
         marketingWallet = _marketingWalletAddress;
-        emit updateMarketingWallet(_marketingWalletAddress);
+        emit UpdateMarketingWallet(_marketingWalletAddress);
     }
 
     /**
-     *@dev update all Wallets Address in the same function
-     * _charityWalletAddress updates charityWallet address
-     * _developerWalletAddress updates developerWallet address
-     * _marketinfWalletAddress updates marketingWallet address
+      @dev update all Wallets Address in the same function
+      @param _charityWalletAddress updates charityWallet address
+      @param _developerWalletAddress updates developerWallet address
+      @param _marketingWalletAddress updates marketingWallet address
      */
     function updateWalletsAddress(
-        address _chrarityWalletAddress,
+        address _charityWalletAddress,
         address _developerWalletAddress,
         address _marketingWalletAddress
     ) external onlyOwner {
-        charityWallet = _chrarityWalletAddress;
+        charityWallet = _charityWalletAddress;
         developerWallet = _developerWalletAddress;
         marketingWallet = _marketingWalletAddress;
+
+        emit UpdateWalletsAddress(
+            charityWallet,
+            developerWallet,
+            marketingWallet
+        );
     }
 
     //to recieve BNB from uniswapV2Router when swaping
@@ -1070,6 +1229,7 @@ contract ODON is
         // require(amount <= address(this).balance);
         address payable _owner = payable(msg.sender);
         _owner.transfer(nativeCrrency);
+        emit WithdrawBNBFromContract(msg.sender, nativeCrrency);
     }
 
     /**
@@ -1081,7 +1241,8 @@ contract ODON is
             swapableLiquidityFeeAmount -
             burnableFeeAmount;
         _balances[address(this)] -= withdrawlAmount;
-        _balances[developerWallet] += withdrawlAmount;
+        _balances[owner()] += withdrawlAmount;
+        emit WithdrawTokenFromContract(address(this),owner(),withdrawlAmount);
     }
 
     /**
